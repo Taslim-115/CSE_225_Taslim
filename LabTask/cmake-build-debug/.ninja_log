@@ -1,0 +1,12 @@
+# ninja log v5
+7	210	7317735009914549	CMakeFiles/LabTask.dir/UnsortedType.cpp.obj	b63587a478f3ae96
+1	795	7317735015759375	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
+797	1069	7317735018426124	LabTask.exe	f149970f4f6ef5a3
+4	842	7317750359132319	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
+11	2213	7317750372870918	CMakeFiles/LabTask.dir/Movie.cpp.obj	b8b77098b70c3695
+5	2186	7317750988102870	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
+4	1951	7317752507923907	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
+5	549	7317753817927912	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
+4	1995	7317753995217492	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
+11	2353	7317797797388443	CMakeFiles/LabTask.dir/Movie.cpp.obj	b8b77098b70c3695
+5	2359	7317797797439077	CMakeFiles/LabTask.dir/main.cpp.obj	fd62232c423e9e20
