@@ -1,12 +1,11 @@
 #include <bits/stdc++.h>
 #include "StackType.cpp"
-
 using namespace std;
 
-int prec(string c) {
-    if (c == "/" || c == "*")
+int prec(char c) {
+    if (c == '/' || c == '*')
         return 2;
-    else if (c == "+" || c == "-")
+    else if (c == '+' || c == '-')
         return 1;
     else
         return -1;
@@ -22,86 +21,69 @@ int main() {
     while (t--) {
 
         string p;
-        StackType<string> stack;
+        StackType<char> stack;
+
         getline(cin, s);
-        stringstream ss2(s);
-        string ch;
 
-        while (ss2 >> ch) {
+        for (char ch: s) {
 
-
-            //cout << ch << endl;
-
-            if (ch == "(") {
+            if (ch == ' ') {
+                continue;
+            } else if (ch == '(') {
                 stack.Push(ch);
-
-            } else if (ch == ")") {
-                while (stack.Top() != "(") {
-                    p = p + " " + stack.Top();
+                p += " ";
+            } else if (ch == ')') {
+                p += " ";
+                while (stack.Top() != '(') {
+                    p = p + " " + stack.Top() + " ";
                     stack.Pop();
                 }
                 stack.Pop();
-            } else if (ch == "+" || ch == "-" || ch == "*" || ch == "/") {
+            } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                p += " ";
                 while (!stack.IsEmpty() && prec(ch) <= prec(stack.Top())) {
-                    p = p + " " + stack.Top();
+                    p = p + " " + stack.Top() + " ";
                     stack.Pop();
                 }
                 stack.Push(ch);
-            } else {
-                p = p + " " + ch;
+            } else if (isdigit(ch)) {
+                p += ch;
             }
         }
 
         // pop all the remaining elements from the stack
         while (!stack.IsEmpty()) {
-            p = p + " " +stack.Top();
+            p = p + " " + stack.Top();
             stack.Pop();
         }
 
-        //cout << p << endl;
 
         int countOperand, countOperator;
         countOperator = countOperand = 0;
 
-        stringstream ss1(p);
+        stringstream ss(p);
         string tok;
-        while (ss1 >> tok)
-        {
-            if (tok == "+" || tok == "-" || tok == "*" || tok == "/" )
-                    countOperator++;
-                else
-                    countOperand++;
+        while (ss >> tok) {
+            if (tok == "+" || tok == "-" || tok == "*" || tok == "/")
+                countOperator++;
+            else
+                countOperand++;
         }
-//            for (char ch: p) {
-//                if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')')
-//                    countOperator++;
-//                else
-//                    countOperand++;
-//
-//            }
 
         bool flag = false;
         if (countOperand == countOperator + 1) flag = true;
 
         if (flag) {
             StackType<double> stk;
-            stringstream ss(p);
-            for (char ch: p) {
-                if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+            stringstream ss2(p);
 
-
-                }
-            }
             string token;
-            while (ss >> token) {
+            while (ss2 >> token) {
                 if (token == "+" || token == "-" || token == "*" || token == "/") {
-                    double a, b;
-                    b = stk.Top();
-                    stk.Pop();
-                    a = stk.Top();
-                    stk.Pop();
-                    const char *c = token.c_str();
-                    switch (*c) {
+
+                    double b = stk.Top();stk.Pop();
+                    double a = stk.Top();stk.Pop();
+                    switch (token[0]) {
 
                         case '+':
                             stk.Push(a + b);
@@ -118,18 +100,16 @@ int main() {
                     }
 
                 } else {
-                    stk.Push(stoi(token));
+                    stk.Push(stod(token));
                 }
             }
 
             cout << stk.Top() << endl;
         } else {
-            cout << "Invalid expression" << endl;
+            cout << "Invalid expression";
         }
 
-
     }
-
 
     return 0;
 }
